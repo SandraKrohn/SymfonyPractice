@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Movies Page
+{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for movie in movies %}
+            <li>{{ movie }}</li>
+        {% endfor %}
+    </ul>
+
+    {# global variable that print the current file name (_self) or the charset (duh) #}
+    {# custom global variables can be set in config->packages->twig.yaml #}
+    {{ _self }} </br>
+    {{ _charset }} </br>
+    {{ author }} </br>
+{% endblock %}
