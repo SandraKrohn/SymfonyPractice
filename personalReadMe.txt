@@ -10,3 +10,7 @@ Controller: middle layer between view and model (database),
 Model: repository-file that interacts with the database
 View: what we see, duh
 
+ADDING CHANGES TO GIT:
+git add .
+git commit -m "message here"
+git push
