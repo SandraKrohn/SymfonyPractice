@@ -35,7 +35,7 @@ class MoviesController extends AbstractController
         // loads repository file (here: MovieRepository.php)
         $repository = $this->em->getRepository(Movie::class);
         // this is a SELECT *
-        // $movies = $repository->findAll();
+        $movies = $repository->findAll();
 
         // SELECT * FROM movies WHERE id = 5
         // $movies = $repository->find(5);
@@ -47,13 +47,17 @@ class MoviesController extends AbstractController
         // $movies = $repository->findOneBy(['id' => 5, 'title' => 'Pokemon'], ['id' => 'DESC']);
         
         // counts everything in the table
-        $movies = $repository->count([]);
+        // $movies = $repository->count([]);
         
         // output of the entity name
-        $movies = $repository->getClassName();
+        // $movies = $repository->getClassName();
 
         // dd = "dump and die"; same as vardump, but cleaner
-        dd($movies);
-        return $this->render('index.html.twig');
+        // dd($movies);
+        $result = [];
+        foreach($movies as $movie) {
+            $result[] = $movie->getTitle();
+        }
+        return $this->render('index.html.twig', ['movies' => $result]);
     }
 }
