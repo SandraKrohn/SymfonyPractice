@@ -23,41 +23,28 @@ class MoviesController extends AbstractController
     //     ]);
     // }
 
-    private $em;
-    public function __construct(EntityManagerInterface $em)
+    private $movieRepository;
+    public function __construct(MovieRepository $movieRepository)
     {
-        $this->em = $em;
+        $this->movieRepository = $movieRepository;
     }
 
-    #[Route('/movies')]
+    #[Route('/movies',  methods: ['GET'])]
     public function index(): Response
     {
-        // loads repository file (here: MovieRepository.php)
-        $repository = $this->em->getRepository(Movie::class);
-        // this is a SELECT *
-        $movies = $repository->findAll();
+        $movies = $this->movieRepository->findAll();
 
-        // SELECT * FROM movies WHERE id = 5
-        // $movies = $repository->find(5);
-        
-        // returns array of obj with given condition (which is a key-value pair), here: ordered by ID
-        // $movies = $repository->findBy([], ['id' => 'DESC']);
-        
-        // same as above, but only selecting one
-        // $movies = $repository->findOneBy(['id' => 5, 'title' => 'Pokemon'], ['id' => 'DESC']);
-        
-        // counts everything in the table
-        // $movies = $repository->count([]);
-        
-        // output of the entity name
-        // $movies = $repository->getClassName();
+        return $this->render('movies/index.html.twig', ['movies' => $movies, 'app' => ['user' => 'Lem']]);
+    }
 
-        // dd = "dump and die"; same as vardump, but cleaner
-        // dd($movies);
-        $result = [];
-        foreach($movies as $movie) {
-            $result[] = $movie->getTitle();
-        }
-        return $this->render('index.html.twig', ['movies' => $result]);
+    #[Route('/movies/{id}', methods: ['GET'])]
+    public function show($id): Response
+    {
+        $movie = $this->movieRepository->find($id);
+
+        return $this->render('movies/show.html.twig', [
+            'movie' => $movie,
+            'app' => ['user' => 'Lem']
+        ]);
     }
 }

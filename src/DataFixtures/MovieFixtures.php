@@ -14,7 +14,7 @@ class MovieFixtures extends Fixture
         $movie->setTitle('Pokemon');
         $movie->setReleaseYear(1998);
         $movie->setDescription('Gotta catch em all');
-        $movie->setImagePath('https://static.wikia.nocookie.net/poohadventures/images/7/74/Pooh%27s_Adventures_of_Pok%C3%A9mon_The_First_Movie_Poster.jpg/revision/latest?cb=20110727180709');
+        $movie->setImagePath('https://irs.www.warnerbros.com/keyart-jpeg/pokemon_first_movie_keyart.jpg');
         // adding data to pivot table
         $movie->addActor($this->getReference('actor_1'));
         $movie->addActor($this->getReference('actor_2'));

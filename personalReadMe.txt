@@ -11,6 +11,7 @@ Model: repository-file that interacts with the database
 View: what we see, duh
 
 Fixtures: usually for testing (adding dummy data)
+Updating DB stuff: via fixtures -> symfony console doctrine:fixtures:load
 
 ADDING CHANGES TO GIT:
 git add .
